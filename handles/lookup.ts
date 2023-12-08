@@ -7,6 +7,7 @@ const from_learners = async (ctx: Request_ctx): Promise<Response> => {
     return new Response(`no word?`, { status: 400 })
   let result = await ctx.app.model.dicts.learners.get(word)
   if (result === null) {
+    console.log(`new word [${word}] from learners`)
     const res = await fetch(`https://dictionaryapi.com/api/v3/references/learners/json/${word}?key=${ctx.app.dictionary_key}`)
     result = await res.json() as Lookup_result
     await ctx.app.model.dicts.learners.sav(word, result)
