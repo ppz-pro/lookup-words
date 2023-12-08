@@ -19,6 +19,7 @@ Deno.serve(
   async (req: Request): Promise<Response> => {
     const url = new URL(req.url)
     try {
+      console.log(`serving ${req.method} ${url.pathname}`)
       return await router(url.pathname)({
         url,
         req,
