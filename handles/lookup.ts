@@ -14,3 +14,8 @@ const from_learners = async (ctx: Request_ctx): Promise<Response> => {
   }
   return respond.json(result)
 }
+
+export
+const all_from_learners = async (ctx: Request_ctx): Promise<Response> => {
+  return respond.json(await ctx.app.model.dicts.learners.get_all())
+}

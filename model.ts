@@ -27,6 +27,20 @@ class Collection_impl implements Dict_collection {
     return res.value
   }
 
+  async get_all() {
+    const res = this.kv.list<Lookup_result>({
+      prefix: [this.name],
+    })
+    const res_list = []
+    for await (const record of res)
+      res_list.push({
+        key: record.key[1] as string,
+        val: record.value,
+        sta: record.versionstamp,
+      })
+    return res_list
+  }
+
   async sav(key: string, val: Lookup_result) {
     await this.kv.set(this.k(key), val)
   }

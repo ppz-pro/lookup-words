@@ -1,7 +1,16 @@
 declare interface Collection<Key, Val> {
   get(key: Key): Promise<Val | null>
   sav(key: Key, val: Val): Promise<void>
+
+  get_all(): Promise<Collection_entry<Key, Val>[]>
 }
+
+declare interface Collection_entry<Key, Val> {
+  key: Key
+  val: Val
+  sta: string // versionstamp
+}
+
 declare interface Dict_collection extends Collection<string, Lookup_result> {
   _: string
 }
@@ -12,7 +21,6 @@ declare interface Dicts {
 
 declare interface App_model {
   dicts: Dicts
-
 }
 declare interface App_context {
   dictionary_key: string

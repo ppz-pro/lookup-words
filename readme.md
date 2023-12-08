@@ -9,5 +9,10 @@ query:
   word: string
 ```
 
+##### all from learners
+```
+GET https://lookup.deno.dev/all/learners
+```
+
 ## links
 + https://dictionaryapi.com/
